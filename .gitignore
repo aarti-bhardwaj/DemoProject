@@ -1,8 +1,0 @@
-/vendor/*
-/config/app.php
-/tmp/*
-/logs/*
-/config/bootstrap.php
-/config/Migrations/schema-dump-default.lock
-/webroot/error_log
-*._.DS_Strore
