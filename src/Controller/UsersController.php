@@ -29,12 +29,15 @@ class UsersController extends AppController
             $this->Flash->error(__('Username or password is incorrect'));
         }
     }
+
     public function index()
     {
         $users = $this->paginate($this->Users);
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
+        //$this->layout='mylayout';
+        $this->viewBuilder()->layout('mylayout');
     }
 
     /**
