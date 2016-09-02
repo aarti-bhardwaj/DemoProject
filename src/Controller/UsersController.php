@@ -31,12 +31,15 @@ class UsersController extends AppController
         }
 
     }
+
     public function index()
     {
         $users = $this->paginate($this->Users);
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
+        //$this->layout='mylayout';
+        $this->viewBuilder()->layout('mylayout');
     }
 
     /**
