@@ -47,6 +47,7 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+<<<<<<< HEAD
         // $validator
         //     ->integer('id')
         //     ->allowEmpty('id', 'create');
@@ -95,5 +96,28 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['email']));
 
         return $rules;
+=======
+        $validator
+            ->integer('id')
+            ->allowEmpty('id', 'create');
+
+        $validator
+            ->requirePresence('uname', 'create')
+            ->notEmpty('uname');
+
+        $validator
+            ->requirePresence('emailid', 'create')
+            ->notEmpty('emailid');
+
+        $validator
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
+
+        $validator
+            ->requirePresence('confirm', 'create')
+            ->notEmpty('confirm');
+
+        return $validator;
+>>>>>>> 24cd6f9ca5199bc103d97f1ac4078435dcb9a5db
     }
 }

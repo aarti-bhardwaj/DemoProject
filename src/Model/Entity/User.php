@@ -7,13 +7,14 @@ use Cake\ORM\Entity;
  * User Entity
  *
  * @property int $id
- * @property string $username
+
+ * @property string $uname
+ * @property string $emailid
  * @property string $password
- * @property string $email
- * @property string $role
+ * @property string $confirm
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
- * @property bool $status
+
  */
 class User extends Entity
 {

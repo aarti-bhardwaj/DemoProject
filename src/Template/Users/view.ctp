@@ -11,20 +11,7 @@
     <h3><?= h($user->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Username') ?></th>
-            <td><?= h($user->username) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Email') ?></th>
-            <td><?= h($user->email) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Role') ?></th>
-            <td><?= h($user->role) ?></td>
+
         </tr>
         <tr>
             <th><?= __('Id') ?></th>
@@ -38,9 +25,7 @@
             <th><?= __('Modified') ?></th>
             <td><?= h($user->modified) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Status') ?></th>
-            <td><?= $user->status ? __('Yes') : __('No'); ?></td>
-        </tr>
+
+
     </table>
 </div>
