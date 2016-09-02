@@ -230,6 +230,8 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'username' => 'root',
+            'password' => 'twinspark',
+            'database' => 'facebook_db',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],

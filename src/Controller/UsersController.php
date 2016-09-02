@@ -2,11 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-<<<<<<< HEAD
-use Cake\Event\Event;
-=======
 
->>>>>>> 24cd6f9ca5199bc103d97f1ac4078435dcb9a5db
 /**
  * Users Controller
  *
@@ -20,12 +16,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-<<<<<<< HEAD
 
-    public function login()
-    {
-        
-=======
     public function login()
     {
         if ($this->request->is('post'))
@@ -38,7 +29,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('Username or password is incorrect'));
         }
->>>>>>> 24cd6f9ca5199bc103d97f1ac4078435dcb9a5db
+
     }
     public function index()
     {
