@@ -20,21 +20,26 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
-    </title>
+    </title> -->
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+     <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('cake.css') ?> 
 
     <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+    <?= $this->fetch('css') ?> 
+    <?= $this->fetch('script') ?> 
+
+    <?= $this->Html->css('custom.css') ?>
+    
+    <title>Facebook</title>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
+    <!-- <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
@@ -46,7 +51,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>

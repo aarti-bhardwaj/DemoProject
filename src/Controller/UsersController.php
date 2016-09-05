@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+
 
 /**
  * Users Controller
@@ -16,28 +18,50 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
+
+    public $components = array('Auth');
+    // var $name = 'Users';
+    // var $helpers = array('Form');
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('add' , 'edit');
+    }
     public function login()
     {
         if ($this->request->is('post'))
         {
-            // Important: Use login() without arguments! See warning below.
-            if ($this->Auth->login())
-            {
-                $this->Flash->success(__('Login Succesfully'));
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Flash->error(__('Username or password is incorrect'));
+            $user = $this->Auth->identify();
+            if($user)
+                {
+                    $this->Auth->setUser($user);
+                    $this->Flash->success(_("Login Successfully"));
+                    // return $this->redirect($this->Auth->redirectUrl());
+                }
+                else
+                {
+                    $this->Flash->error(_("Invalid email or password, try again"));
+                }
         }
     }
 
+    public function initialize()
+    {
+        parent::initialize();
+        
+    }
+    public function logout()
+    {
+        $this->Flash->success('You are now logged out.');
+        return $this->redirect($this->Auth->logout());
+    }
     public function index()
     {
         $users = $this->paginate($this->Users);
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
-        //$this->layout='mylayout';
-        $this->viewBuilder()->layout('mylayout');
     }
 
     /**
@@ -66,6 +90,7 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
+            
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
@@ -78,6 +103,7 @@ class UsersController extends AppController
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
+    
 
     /**
      * Edit method

@@ -230,8 +230,8 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'username' => 'root',
-            'password' => 'saritaanil',
-            'database' => 'DemoProject',
+            'password' => 'root',
+            'database' => 'facebook',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
