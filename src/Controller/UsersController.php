@@ -29,7 +29,6 @@ class UsersController extends AppController
             $this->Flash->error(__('Username or password is incorrect'));
         }
     }
-
     public function index()
     {
         $users = $this->paginate($this->Users);
