@@ -16,7 +16,7 @@ class CreateUsers extends AbstractMigration
         $table->addColumn('uname', 'string', [
             'default' => null,
             'limit' => 255,
-            'null' => false,
+            'null' => true,
         ]);
         $table->addColumn('emailid', 'string', [
             'default' => null,
@@ -43,4 +43,5 @@ class CreateUsers extends AbstractMigration
         ]);
         $table->create();
     }
+    
 }

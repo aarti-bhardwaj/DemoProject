@@ -2,6 +2,8 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Log\LogTrait;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * User Entity
@@ -19,6 +21,7 @@ use Cake\ORM\Entity;
 class User extends Entity
 {
 
+    use LogTrait;
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -41,4 +44,9 @@ class User extends Entity
     protected $_hidden = [
         'password'
     ];
+    protected function _setPassword($value)
+    {
+        $hasher = new DefaultPasswordHasher();
+        return $hasher->hash($value);
+    }
 }

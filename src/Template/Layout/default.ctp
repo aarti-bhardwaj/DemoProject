@@ -20,21 +20,29 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
-    </title>
+    </title> -->
     <?= $this->Html->meta('icon') ?>
+
 
     <?= $this->Html->css('facebook.css') ?>
     <?= $this->Html->css('bootstrapDB.css') ?>
 
 
+
     <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+    <?= $this->fetch('css') ?> 
+    <?= $this->fetch('script') ?> 
+
+    <?= $this->Html->css('custom.css') ?>
+    
+    <title>Facebook</title>
 </head>
 <body>
+
     <?= $this->Flash->render() ?>
     <div class="wrapper">
             <?= $this->fetch('content') ?>

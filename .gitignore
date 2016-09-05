@@ -4,6 +4,9 @@
 /config/app.php
 
 /tmp/*
+!/tmp/empty
+
 /logs/*
 !/logs/empty
+
 /config/Migrations/schema-dump-default.lock
