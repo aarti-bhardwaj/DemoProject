@@ -42,10 +42,10 @@ use Cake\Routing\Route\DashedRoute;
  *
  */
 
-Router::connect('/dashboard', array('controller' => 'Users', 'action' => 'index'));
-Router::connect('/login', array('controller' => 'Users', 'action' => 'login'));
-Router::connect('/logout', array('controller' => 'Users', 'action' => 'logout'));
-Router::connect('/', array('controller' => 'Users', 'action' => 'login'));
+// Router::connect('/dashboard', array('controller' => 'Users', 'action' => 'index'));
+// Router::connect('/login', array('controller' => 'Users', 'action' => 'login'));
+// Router::connect('/logout', array('controller' => 'Users', 'action' => 'logout'));
+// Router::connect('/', array('controller' => 'Users', 'action' => 'login'));
 Router::defaultRouteClass(DashedRoute::class);
 
 

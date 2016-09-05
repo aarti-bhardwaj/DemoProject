@@ -16,6 +16,10 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
+    public function dashboard()
+    {
+        
+    }
 
     public function login()
     {
