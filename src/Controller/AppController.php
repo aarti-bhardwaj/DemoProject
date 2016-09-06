@@ -72,7 +72,11 @@ class AppController extends Controller
     }
     public function isAuthorized($user)
     {
-        $this->Auth->allow(['add']);
+        //admin can access every action
+        if(isset($user['role']) && $user['role'] === 'admin')
+        {
+            return true;
+        }
         return false;
     }
 }
