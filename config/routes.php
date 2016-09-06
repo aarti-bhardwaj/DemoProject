@@ -41,18 +41,13 @@ use Cake\Routing\Route\DashedRoute;
  * `:action` markers.
  *
  */
-<<<<<<< HEAD
 // Router::connect('/', array('controller' => 'Users', 'action' => 'login'));
     
-=======
-
-
-// Router::connect('/dashboard', array('controller' => 'Users', 'action' => 'index'));
+// Router::connect('/', array('controller' => 'Users', 'action' => 'profile'));
 // Router::connect('/login', array('controller' => 'Users', 'action' => 'login'));
 // Router::connect('/logout', array('controller' => 'Users', 'action' => 'logout'));
 // Router::connect('/', array('controller' => 'Users', 'action' => 'login'));
 
->>>>>>> 452e0c191fa6b58f5c9c466513cf211369900f6b
 Router::defaultRouteClass(DashedRoute::class);
 
 

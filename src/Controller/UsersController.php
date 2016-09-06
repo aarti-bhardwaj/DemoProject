@@ -32,38 +32,16 @@ class UsersController extends AppController
         
     }
 
-    public $components = array('Auth');
+    // public $components = array('Auth');
     // var $name = 'Users';
     // var $helpers = array('Form');
 
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        $this->Auth->allow('add' , 'edit');
-    }
-
-    public function login()
-    {
-        if ($this->request->is('post'))
-        {
-            $user = $this->Auth->identify();
-            if($user)
-                {
-                    $this->Auth->setUser($user);
-                    $this->Flash->success(_("Login Successfully"));
-                    // return $this->redirect($this->Auth->redirectUrl());
-                }
-                else
-                {
-                    $this->Flash->error(_("Invalid email or password, try again"));
-                }
-        }
-    }
     // public function beforeFilter(Event $event)
     // {
     //     parent::beforeFilter($event);
-    //     $this->Auth->allow('add' , 'view');
+    //     $this->Auth->allow('add' , 'edit');
     // }
+
     // public function login()
     // {
     //     if ($this->request->is('post'))
@@ -81,7 +59,7 @@ class UsersController extends AppController
     //             }
     //     }
     // }
-
+    
     // public function initialize()
     // {
     //     parent::initialize();
@@ -92,23 +70,7 @@ class UsersController extends AppController
     //     $this->Flash->success('You are now logged out.');
     //     return $this->redirect($this->Auth->logout());
     // }
-    // public function index()
-    // {
-    //     $users = $this->paginate($this->Users);
-
-    //     $this->set(compact('users'));
-    //     $this->set('_serialize', ['users']);
-    // }
-    public function initialize()
-    {
-        parent::initialize();
-        
-    }
-    public function logout()
-    {
-        $this->Flash->success('You are now logged out.');
-        return $this->redirect($this->Auth->logout());
-    }
+    
     public function index()
     {
         $users = $this->paginate($this->Users);
@@ -168,6 +130,7 @@ class UsersController extends AppController
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
+}
     
 
     /**

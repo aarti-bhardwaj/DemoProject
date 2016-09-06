@@ -23,11 +23,6 @@
       </fieldset></br></br>
       <?= $this->Form->button(_('Login'), array('style' => "float: inherit;
 width: 208px;")) ?>
-      <?= $this->Form->button($this->Html->link('SignUp' , ['controller'=>'Users', 'action' => 'add']), array('type' => 'button', 'style' => "float: inherit; width: 208px;")) ?>
-      <?= $this->Form->end() ?>
-      </fieldset>
-      <?= $this->Form->button(_('Login'), array('style' => "float: inherit;
-width: 208px;")) ?>
 
       <span class="button" style="float: inherit; width: 208px;">
           <?= $this->Html->link('SignUp' , ['action' => '  add']) ?>
