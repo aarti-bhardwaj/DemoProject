@@ -19,6 +19,11 @@ class UsersController extends AppController
      * @return \Cake\Network\Response|null
      */
 
+    public function dashboard()
+    {
+        
+    }
+
     public $components = array('Auth');
     // var $name = 'Users';
     // var $helpers = array('Form');
@@ -28,6 +33,7 @@ class UsersController extends AppController
         parent::beforeFilter($event);
         $this->Auth->allow('add' , 'edit');
     }
+
     public function login()
     {
         if ($this->request->is('post'))
@@ -44,6 +50,7 @@ class UsersController extends AppController
                     $this->Flash->error(_("Invalid email or password, try again"));
                 }
         }
+
     }
 
     public function initialize()

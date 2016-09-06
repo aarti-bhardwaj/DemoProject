@@ -49,10 +49,12 @@
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
+
             echo $this->Form->input('uname');
             echo $this->Form->input('emailid');
             echo $this->Form->input('password');
             echo $this->Form->input('confirm');
+
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -9,12 +9,14 @@ use Cake\Auth\DefaultPasswordHasher;
  * User Entity
  *
  * @property int $id
+
  * @property string $uname
  * @property string $emailid
  * @property string $password
  * @property string $confirm
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
+
  */
 class User extends Entity
 {

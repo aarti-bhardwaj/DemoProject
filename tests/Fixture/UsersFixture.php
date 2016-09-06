@@ -17,6 +17,7 @@ class UsersFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
+
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'uname' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'emailid' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
@@ -29,6 +30,7 @@ class UsersFixture extends TestFixture
         ],
         '_options' => [
             'engine' => 'InnoDB',
+
             'collation' => 'utf8_general_ci'
         ],
     ];
