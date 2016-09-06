@@ -2,26 +2,22 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use Cake\Log\LogTrait;
-use Cake\Auth\DefaultPasswordHasher;
 
 /**
- * User Entity
+ * Post Entity
  *
  * @property int $id
-
- * @property string $uname
- * @property string $emailid
- * @property string $password
- * @property string $confirm
+ * @property string $postname
+ * @property int $user_id
+ * @property string $description
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
-
+ *
+ * @property \App\Model\Entity\User $user
  */
-class User extends Entity
+class Post extends Entity
 {
 
-    use LogTrait;
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -35,18 +31,4 @@ class User extends Entity
         '*' => true,
         'id' => false
     ];
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var array
-     */
-    protected $_hidden = [
-        'password'
-    ];
-    protected function _setPassword($value)
-    {
-        $hasher = new DefaultPasswordHasher();
-        return $hasher->hash($value);
-    }
 }

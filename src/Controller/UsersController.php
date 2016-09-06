@@ -22,8 +22,42 @@ class UsersController extends AppController
     // public $components = array('Auth');
     // var $name = 'Users';
     // var $helpers = array('Form');
-    public function profile() {
+    public function profile() 
+    {
+
+    }
         
+    public function dashboard()
+    {
+        
+    }
+
+    public $components = array('Auth');
+    // var $name = 'Users';
+    // var $helpers = array('Form');
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('add' , 'edit');
+    }
+
+    public function login()
+    {
+        if ($this->request->is('post'))
+        {
+            $user = $this->Auth->identify();
+            if($user)
+                {
+                    $this->Auth->setUser($user);
+                    $this->Flash->success(_("Login Successfully"));
+                    // return $this->redirect($this->Auth->redirectUrl());
+                }
+                else
+                {
+                    $this->Flash->error(_("Invalid email or password, try again"));
+                }
+        }
     }
     // public function beforeFilter(Event $event)
     // {
@@ -65,6 +99,23 @@ class UsersController extends AppController
     //     $this->set(compact('users'));
     //     $this->set('_serialize', ['users']);
     // }
+    public function initialize()
+    {
+        parent::initialize();
+        
+    }
+    public function logout()
+    {
+        $this->Flash->success('You are now logged out.');
+        return $this->redirect($this->Auth->logout());
+    }
+    public function index()
+    {
+        $users = $this->paginate($this->Users);
+
+        $this->set(compact('users'));
+        $this->set('_serialize', ['users']);
+    }
 
     /**
      * View method
@@ -101,6 +152,18 @@ class UsersController extends AppController
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
+        if ($this->request->is('post')) 
+        {
+                $user = $this->Users->patchEntity($user, $this->request->data);
+                if ($this->Users->save($user)) 
+                {
+                    $this->Flash->success(__('The user has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                } 
+                else 
+                {
+                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);

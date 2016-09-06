@@ -11,20 +11,7 @@
     <h3><?= h($user->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Uname') ?></th>
-            <td><?= h($user->uname) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Emailid') ?></th>
-            <td><?= h($user->emailid) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Confirm') ?></th>
-            <td><?= h($user->confirm) ?></td>
+
         </tr>
         <tr>
             <th><?= __('Id') ?></th>
@@ -38,5 +25,7 @@
             <th><?= __('Modified') ?></th>
             <td><?= h($user->modified) ?></td>
         </tr>
+
+
     </table>
 </div>

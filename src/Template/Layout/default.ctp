@@ -30,6 +30,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
      <!-- <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?> --> 
 
+    <?= $this->Html->css('facebook.css') ?>
+    <?= $this->Html->css('bootstrapDB.css') ?>
+
+
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?> 
     <?= $this->fetch('script') ?> 
@@ -55,9 +59,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             </ul>
         </div>
     </nav> -->
+
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+    <div class="wrapper">
+            <?= $this->fetch('content') ?>
     </div>
     <footer>
     </footer>
