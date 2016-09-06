@@ -41,6 +41,8 @@ use Cake\Routing\Route\DashedRoute;
  * `:action` markers.
  *
  */
+// Router::connect('/', array('controller' => 'Users', 'action' => 'login'));
+    
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
