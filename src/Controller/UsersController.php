@@ -20,6 +20,7 @@ class UsersController extends AppController
      * @return \Cake\Network\Response|null
      */
 
+<<<<<<< HEAD
     // public $components = array('Auth');
     // var $name = 'Users';
     // var $helpers = array('Form');
@@ -33,49 +34,59 @@ class UsersController extends AppController
         $this->set('yourPosts', $posts);
     }
         
+=======
+    public $components = array('Auth');
+
+>>>>>>> 1dbf11c0624b17f2f359eb5a6ea0f9789308b829
     public function dashboard()
     {
+        $this->loadModel('Posts');
+        $posts = $this->Posts->find()
+                             ->all();
+        $this->set('userposts' , $posts);
         
     }
+    public function profile()
+    {
 
-    // public $components = array('Auth');
-    // var $name = 'Users';
-    // var $helpers = array('Form');
-
-    // public function beforeFilter(Event $event)
-    // {
-    //     parent::beforeFilter($event);
-    //     $this->Auth->allow('add' , 'edit');
-    // }
-
-    // public function login()
-    // {
-    //     if ($this->request->is('post'))
-    //     {
-    //         $user = $this->Auth->identify();
-    //         if($user)
-    //             {
-    //                 $this->Auth->setUser($user);
-    //                 $this->Flash->success(_("Login Successfully"));
-    //                 // return $this->redirect($this->Auth->redirectUrl());
-    //             }
-    //             else
-    //             {
-    //                 $this->Flash->error(_("Invalid email or password, try again"));
-    //             }
-    //     }
-    // }
+    }
     
-    // public function initialize()
-    // {
-    //     parent::initialize();
-        
-    // }
-    // public function logout()
-    // {
-    //     $this->Flash->success('You are now logged out.');
-    //     return $this->redirect($this->Auth->logout());
-    // }
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('add' , 'edit');
+    }
+
+    public function login()
+    {
+        if ($this->request->is('post'))
+        {
+            $user = $this->Auth->identify();
+            if($user)
+                {
+                    $this->Auth->setUser($user);
+                    $this->Flash->success(_("Login Successfully"));
+                    return $this->redirect(['action' => 'dashboard']);
+                }
+                else
+                {
+                    $this->Flash->error(_("Invalid email or password, try again"));
+                }
+        }
+
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
+
+    }
+    public function logout()
+    {
+        $this->Flash->success('You are now logged out.');
+        return $this->redirect($this->Auth->logout());
+    }
     
     public function index()
     {
@@ -122,16 +133,27 @@ class UsersController extends AppController
             }
         if ($this->request->is('post')) 
         {
-                $user = $this->Users->patchEntity($user, $this->request->data);
-                if ($this->Users->save($user)) 
+            $temp = $this->request->data;
+            $this->request->data['role'] = 'user';
+            // pr($temp);
+                if( $this->request->data[ 'password' ] != $this->request->data[ 'confirm-password' ] ) 
                 {
-                    $this->Flash->success(__('The user has been saved.'));
-                    return $this->redirect(['action' => 'index']);
-                } 
-                else 
-                {
-                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                    $this->Flash->error( "The passwords are not same." );
+                    return $this->redirect(['action' => 'add']);
                 }
+            unset($this->request->data['confirm-password']);
+                    $user = $this->Users->patchEntity($user, $this->request->data);
+                    // pr($user); die;
+                    if ($this->Users->save($user)) 
+                    {
+                        $this->Flash->success(__('The user has been saved.'));
+                        // return $this->redirect(['action' => 'index']);
+                        return $this->redirect(['action' => 'dashboard']);
+                    } 
+                    else 
+                    {
+                        $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                    }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);

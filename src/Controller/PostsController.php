@@ -52,15 +52,16 @@ class PostsController extends AppController
     public function add()
     {
         $post = $this->Posts->newEntity();
-        if ($this->request->is('post', 'put')) {
+        if ($this->request->is('post')) {
+            pr($this->request->data);die;
             $post = $this->Posts->patchEntity($post, $this->request->data);
             $post->user_id = $this->Auth->user(['id']);
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The post could not be saved. Please, try again.'));
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
             }
         }
         $users = $this->Posts->Users->find('list', ['limit' => 200]);
