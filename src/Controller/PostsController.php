@@ -51,21 +51,21 @@ class PostsController extends AppController
      */
     public function add()
     {
-        $post = $this->Posts->newEntity();
-        if ($this->request->is('post', 'put')) {
-            $post = $this->Posts->patchEntity($post, $this->request->data);
-            $post->user_id = $this->Auth->user(['id']);
-            if ($this->Posts->save($post)) {
-                $this->Flash->success(__('The post has been saved.'));
+        // $post = $this->Posts->newEntity();
+        // if ($this->request->is('post', 'put')) {
+        //     $post = $this->Posts->patchEntity($post, $this->request->data);
+        //     $post->user_id = $this->Auth->user(['id']);
+        //     if ($this->Posts->save($post)) {
+        //         $this->Flash->success(__('The post has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The post could not be saved. Please, try again.'));
-            }
-        }
-        $users = $this->Posts->Users->find('list', ['limit' => 200]);
-        $this->set(compact('post', 'users'));
-        $this->set('_serialize', ['post']);
+        //         return $this->redirect(['action' => 'index']);
+        //     } else {
+        //         $this->Flash->error(__('The post could not be saved. Please, try again.'));
+        //     }
+        // }
+        // $users = $this->Posts->Users->find('list', ['limit' => 200]);
+        // $this->set(compact('post', 'users'));
+        // $this->set('_serialize', ['post']);
     }
 
     /**
