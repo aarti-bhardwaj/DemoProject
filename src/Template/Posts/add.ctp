@@ -1,21 +1,64 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Posts'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="posts form large-9 medium-8 columns content">
-    <?= $this->Form->create($post) ?>
-    <fieldset>
-        <legend><?= __('Add Post') ?></legend>
-        <?php
-            echo $this->Form->input('postname');
-            echo $this->Form->input('user_id', ['options' => $users]);
-            echo $this->Form->input('description');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+
+                        
+                        <!-- top nav -->
+                        <div class="navbar navbar-blue navbar-static" style="width:100% !important">  
+                            <div class="navbar-header">
+                            </div>
+                            <nav class="collapse navbar-collapse" role="navigation">
+                            <form class="navbar-form navbar-left">
+                                <div class="input-group input-group-sm" style="max-width:360px;">
+                                  <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
+                                  <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                  </div>
+                                </div>
+                            </form>
+                            <ul class="nav navbar-nav">
+                              <li>
+                                <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
+                              </li>
+                              <li>
+                                <!-- <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a> -->
+                              </li>
+                              <li>
+                                <!-- <a href="#"><span class="badge">badge</span></a> -->
+                              </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                              <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="">More</a></li>
+                                  <li><a href="">More</a></li>
+                                  <li><a href="">More</a></li>
+                                  <li><a href="">More</a></li>
+                                  <li><a href="">More</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                            </nav>
+                        </div>
+
+
+                        <!-- update status window -->
+                        <!-- <div class="well"> 
+                                           <form class="form-horizontal" role="form">
+                                            <h4>What's New</h4>
+                                             <div class="form-group" style="padding:14px;">
+                                              <?= $this->Form->input('', ['type' => 'text','class' =>'form-control input-lg']); ?> <br>
+                                                <?= $this->Form->textarea('discription', ['class' =>'form-control input-lg', 'placeholder' =>'What do you want to share?',]); ?>  -->
+
+
+                                                <!-- <?= $this->Form->create($post) ?> -->
+                                    <fieldset>
+                                        <legend><?= __('Add Post') ?></legend>
+                                        <?php
+                                            echo $this->Form->input('postname', ['type' => 'text','class' =>'form-control input-lg']);
+                                            // echo $this->Form->input('user_id', ['options' => $users]);
+                                            echo $this->Form->textarea('discription', ['class' =>'form-control input-lg', 'placeholder' =>'What do you want to share?',]);
+                                        ?> <br>
+                                    </fieldset>
+                                    <?= $this->Form->button(__('Submit')) ?>  
+                                    <?= $this->Form->end() ?>
+
+                                        

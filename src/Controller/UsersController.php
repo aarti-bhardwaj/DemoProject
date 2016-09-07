@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\I18n\Time;
 
 
 /**
@@ -18,8 +19,18 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-
     public $components = array('Auth');
+    public function profile() 
+    {
+            $this->loadModel('Posts');
+            $posts = $this->Posts->find()
+                                // ->where(['user_id' => $this->Auth->user('id')])
+                                ->all();
+
+        $this->set('yourPosts', $posts);
+    }
+        
+    
 
     public function dashboard()
     {
@@ -29,11 +40,6 @@ class UsersController extends AppController
         $this->set('userposts' , $posts);
         
     }
-    public function profile()
-    {
-
-    }
-    
 
     public function beforeFilter(Event $event)
     {

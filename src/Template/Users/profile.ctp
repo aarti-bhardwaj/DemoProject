@@ -70,8 +70,10 @@
                 </div>
             </div>
         </aside>
-        
-        <!--timeline-->
+    <?php    foreach($yourPosts as $post)
+        {
+        ?>
+        <!-- timeline -->
         <section class="timeline col-sm-9">
         <!--post Timeline-->
         <div class="thumbnail thumbnail-post">
@@ -84,12 +86,14 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <a class="media-heading title-post" href="#">Your Comment Title</a>
-                    <h5 class="time-post">3 minutes ago</h5>
+                    <a class="media-heading title-post" href="#"><?= $post['postname'] ?></a>
+                    <p><?= $post['description']?></p>
+                    <h5 class="time-post"><?= $this->Time->timeAgoInWords($post->created).' ago'?></h5>
                   </div>
                 </div>
               <p></p>
             </div><!--#caption-->
+          <?php  }  ?>
             <div class="links-post">
                 <span class="fa fa-thumbs-o-up link-post"></span><a href="#" class="link-post" role="button">Like</a> 
                 <span class="fa fa-comment link-post"></span><a href="#" class="link-post" role="button">Comment</a> 
@@ -109,7 +113,7 @@
                   </div>
                   <div class="media-body">
                     <a class="media-heading title-post" href="#">Your Comment Title</a>
-                    <h5 class="time-post">3 minutes ago</h5>
+                    <h5 class="time-post"><?= h($post->created)?></h5>
                   </div>
                 </div>
                 <a href="#" tyle="width: 100%;height: 200px;display: block;">

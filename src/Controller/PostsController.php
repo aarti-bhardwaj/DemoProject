@@ -51,6 +51,7 @@ class PostsController extends AppController
      */
     public function add()
     {
+
         $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
             pr($this->request->data);die;

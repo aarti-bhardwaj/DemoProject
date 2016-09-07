@@ -274,13 +274,16 @@
 			  <div class="modal-body">
 				  <form class="form center-block">
 					<div class="form-group">
-					  <textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
+					  <!-- <textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea> -->
+						<?= $this->Form->input('', ['type' => 'text','class' =>'form-control input-lg']); ?> <br>
+						<?= $this->Form->textarea('discription', ['class' =>'form-control input-lg', 'placeholder' =>'What do you want to share?',]); ?> 
 					</div>
 				  </form>
 			  </div>
 			  <div class="modal-footer">
 				  <div>
-				  <?= $this->Form->button('Post', ['controller' => 'Posts' , 'action' => 'add']) ?>
+				 <?= $this->Form->postButton('Post' , ['controller' => 'Posts' , 'action' => 'add']); ?>
+
 					<ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
 				  </div>	
 			  </div>

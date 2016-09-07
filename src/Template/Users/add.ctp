@@ -13,6 +13,7 @@
       <h4 class="title">Connect with friends and the world around you.</h4>
     </div>
     <div class="loginform">
+
         <?= $this->Form->create(); ?>
         <fieldset>
             <?php
