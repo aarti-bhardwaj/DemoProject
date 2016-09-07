@@ -13,10 +13,9 @@
       <h4 class="title">Connect with friends and the world around you.</h4>
     </div>
     <div class="loginform">
-        <?= $this->Form->create($user) ?>
+        <?= $this->Form->create() ?>
         <fieldset>
             <?php
-                echo $this->Form->label('User.name', 'Your username');
                 echo $this->Form->label('User.name', 'Username');
                 echo $this->Form->input('uname', ['label' => false]);
                 echo $this->Form->label('Email Id', 'Email ID');
@@ -24,11 +23,10 @@
                 echo $this->Form->label('Password', 'Password');
                 echo $this->Form->input('password', ['label' => false]);
                 echo $this->Form->label('Confirm Password', 'Confirm Password');
-                echo $this->Form->input('confirm', ['label' => false, 'type' => 'password']);
                 echo $this->Form->input('confirm-password', ['label' => false, 'type' => 'password']);
 
             ?>
-        </fieldset>
+        </fieldset><br>
     <?= $this->Form->button(__('Sign Up') ) ?>
     <?= $this->Form->end() ?>
     </div>
@@ -40,26 +38,5 @@
 </div>
 
 
-<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Add User') ?></legend>
-        <?php
 
-            echo $this->Form->input('uname');
-            echo $this->Form->input('emailid');
-            echo $this->Form->input('password');
-            echo $this->Form->input('confirm');
-
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div> -->
 
