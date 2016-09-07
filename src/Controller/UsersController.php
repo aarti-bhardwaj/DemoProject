@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\I18n\Time;
+
 
 
 /**
@@ -20,10 +20,7 @@ class UsersController extends AppController
      * @return \Cake\Network\Response|null
      */
 
-<<<<<<< HEAD
-    // public $components = array('Auth');
-    // var $name = 'Users';
-    // var $helpers = array('Form');
+    public $components = array('Auth');
     public function profile() 
     {
             $this->loadModel('Posts');
@@ -34,23 +31,10 @@ class UsersController extends AppController
         $this->set('yourPosts', $posts);
     }
         
-=======
-    public $components = array('Auth');
-
->>>>>>> 1dbf11c0624b17f2f359eb5a6ea0f9789308b829
     public function dashboard()
     {
-        $this->loadModel('Posts');
-        $posts = $this->Posts->find()
-                             ->all();
-        $this->set('userposts' , $posts);
         
     }
-    public function profile()
-    {
-
-    }
-    
 
     public function beforeFilter(Event $event)
     {
@@ -67,20 +51,19 @@ class UsersController extends AppController
                 {
                     $this->Auth->setUser($user);
                     $this->Flash->success(_("Login Successfully"));
-                    return $this->redirect(['action' => 'dashboard']);
+                    // return $this->redirect($this->Auth->redirectUrl());
                 }
                 else
                 {
                     $this->Flash->error(_("Invalid email or password, try again"));
                 }
         }
-
     }
-
+    
     public function initialize()
     {
         parent::initialize();
-
+        
     }
     public function logout()
     {
@@ -133,27 +116,16 @@ class UsersController extends AppController
             }
         if ($this->request->is('post')) 
         {
-            $temp = $this->request->data;
-            $this->request->data['role'] = 'user';
-            // pr($temp);
-                if( $this->request->data[ 'password' ] != $this->request->data[ 'confirm-password' ] ) 
+                $user = $this->Users->patchEntity($user, $this->request->data);
+                if ($this->Users->save($user)) 
                 {
-                    $this->Flash->error( "The passwords are not same." );
-                    return $this->redirect(['action' => 'add']);
+                    $this->Flash->success(__('The user has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                } 
+                else 
+                {
+                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
                 }
-            unset($this->request->data['confirm-password']);
-                    $user = $this->Users->patchEntity($user, $this->request->data);
-                    // pr($user); die;
-                    if ($this->Users->save($user)) 
-                    {
-                        $this->Flash->success(__('The user has been saved.'));
-                        // return $this->redirect(['action' => 'index']);
-                        return $this->redirect(['action' => 'dashboard']);
-                    } 
-                    else 
-                    {
-                        $this->Flash->error(__('The user could not be saved. Please, try again.'));
-                    }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
