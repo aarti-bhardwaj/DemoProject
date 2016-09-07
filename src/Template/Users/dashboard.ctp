@@ -58,7 +58,7 @@
 							</form>
 							<ul class="nav navbar-nav">
 							  <li>
-								<a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
+								<a href="#"><i class="glyphicon glyphicon-home"></i>Home</a>
 							  </li>
 							  <li>
 								<a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
@@ -122,7 +122,8 @@
 											 <div class="form-group" style="padding:14px;">
 											  <textarea class="form-control" placeholder="Update your status"></textarea>
 											</div>
-											<button class="btn btn-primary pull-right" type="button">Post</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+											<button class="btn btn-primary pull-right" type="button">Post</button>
+											<ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
 										  </form>
 									  </div>
 								   
@@ -157,7 +158,7 @@
 								  <!-- main col right -->
 								  <div class="col-sm-7">
 									   
-										<div class="well"> 
+										<div class="well" style="display:none;"> 
 										   <form class="form">
 											<h4>Sign-up</h4>
 											<div class="input-group text-center">
@@ -166,22 +167,17 @@
 											</div>
 										  </form>
 										</div>
-							  
+							  <?php  foreach($userposts as $post) { ?>
 									   <div class="panel panel-default">
-										 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootply Editor &amp; Code Library</h4></div>
+										 <div class="panel-heading"><p><?= $post['postname'] ?></p></div>
 										  <div class="panel-body">
-											<p><img src="assets/img/150x150.gif" class="img-circle pull-right"> <a href="#">The Bootstrap Playground</a></p>
-											<div class="clearfix"></div>
-											<hr>
-											Design, build, test, and prototype 
-		using Bootstrap in real-time from your Web browser. Bootply combines the
-		 power of hand-coded HTML, CSS and JavaScript with the benefits of 
-		responsive design using Bootstrap. Find and showcase Bootstrap-ready 
-		snippets in the 100% free Bootply.com code repository.
+											<!--<p><img src="assets/img/150x150.gif" class="img-circle pull-right"> <a href="#"></a></p>
+											<div class="clearfix"></div>-->
+											<p><?= $post['description']; ?></p>
 										  </div>
 									   </div>
-									
-									   <div class="panel panel-default">
+									<?php } ?>
+									 <!--   <div class="panel panel-default">
 										 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Stackoverflow</h4></div>
 										  <div class="panel-body">
 											<img src="assets/img/150x150.gif" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
@@ -201,9 +197,9 @@
 											</form>
 											
 										  </div>
-									   </div>
+									   </div> -->
 
-									   <div class="panel panel-default">
+									  <!--  <div class="panel panel-default">
 										 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Portlet Heading</h4></div>
 										  <div class="panel-body">
 											<ul class="list-group">
@@ -212,9 +208,9 @@
 											<li class="list-group-item">Thumbnails</li>
 											</ul>
 										  </div>
-									   </div>
+									   </div> -->
 									
-									   <div class="panel panel-default">
+									   <!-- <div class="panel panel-default">
 										<div class="panel-thumbnail"><img src="assets/img/bg_4.jpg" class="img-responsive"></div>
 										<div class="panel-body">
 										  <p class="lead">Social Good</p>
@@ -226,7 +222,7 @@
 											<img src="assets/img/photo_002.jpg" height="28px" width="28px">
 										  </p>
 										</div>
-									  </div>
+									  </div> -->
 									
 								  </div>
 							   </div><!--/row-->
@@ -284,7 +280,7 @@
 			  </div>
 			  <div class="modal-footer">
 				  <div>
-				  <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
+				  <?= $this->Form->button('Post', ['controller' => 'Posts' , 'action' => 'add']) ?>
 					<ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
 				  </div>	
 			  </div>

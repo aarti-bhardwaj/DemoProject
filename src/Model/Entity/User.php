@@ -1,27 +1,22 @@
 <?php
 namespace App\Model\Entity;
-
-use Cake\ORM\Entity;
-use Cake\Log\LogTrait;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\ORM\Entity;
 
 /**
  * User Entity
  *
  * @property int $id
-
  * @property string $uname
  * @property string $emailid
  * @property string $password
- * @property string $confirm
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
-
+ * @property string $role
  */
 class User extends Entity
 {
 
-    use LogTrait;
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *

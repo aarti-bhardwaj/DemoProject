@@ -18,15 +18,20 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-
+    public $components = array('Auth');
     public function dashboard()
     {
+        $this->loadModel('Posts');
+        $posts = $this->Posts->find()
+                             ->all();
+        $this->set('userposts' , $posts);
         
     }
+    public function profile()
+    {
 
-    public $components = array('Auth');
-    // var $name = 'Users';
-    // var $helpers = array('Form');
+    }
+    
 
     public function beforeFilter(Event $event)
     {
@@ -43,7 +48,7 @@ class UsersController extends AppController
                 {
                     $this->Auth->setUser($user);
                     $this->Flash->success(_("Login Successfully"));
-                    // return $this->redirect($this->Auth->redirectUrl());
+                    return $this->redirect(['action' => 'dashboard']);
                 }
                 else
                 {
@@ -98,16 +103,27 @@ class UsersController extends AppController
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) 
         {
-                $user = $this->Users->patchEntity($user, $this->request->data);
-                if ($this->Users->save($user)) 
+            $temp = $this->request->data;
+            $this->request->data['role'] = 'user';
+            // pr($temp);
+                if( $this->request->data[ 'password' ] != $this->request->data[ 'confirm-password' ] ) 
                 {
-                    $this->Flash->success(__('The user has been saved.'));
-                    return $this->redirect(['action' => 'index']);
-                } 
-                else 
-                {
-                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                    $this->Flash->error( "The passwords are not same." );
+                    return $this->redirect(['action' => 'add']);
                 }
+            unset($this->request->data['confirm-password']);
+                    $user = $this->Users->patchEntity($user, $this->request->data);
+                    // pr($user); die;
+                    if ($this->Users->save($user)) 
+                    {
+                        $this->Flash->success(__('The user has been saved.'));
+                        // return $this->redirect(['action' => 'index']);
+                        return $this->redirect(['action' => 'dashboard']);
+                    } 
+                    else 
+                    {
+                        $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                    }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
