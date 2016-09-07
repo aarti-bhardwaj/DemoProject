@@ -38,7 +38,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('add' , 'edit');
+        // $this->Auth->allow('add' , 'edit');
     }
 
     public function login()
@@ -104,16 +104,6 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            
-            $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
-            }
         if ($this->request->is('post')) 
         {
             $temp = $this->request->data;
@@ -124,7 +114,7 @@ class UsersController extends AppController
                     $this->Flash->error( "The passwords are not same." );
                     return $this->redirect(['action' => 'add']);
                 }
-            unset($this->request->data['confirm-password']);
+                unset($this->request->data['confirm-password']);
                     $user = $this->Users->patchEntity($user, $this->request->data);
                     // pr($user); die;
                     if ($this->Users->save($user)) 
@@ -141,7 +131,6 @@ class UsersController extends AppController
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
-}
     
 
     /**
@@ -188,5 +177,9 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    public function isAuthorized($user)
+    {
+        return true;
     }
 }
