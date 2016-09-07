@@ -18,7 +18,9 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
+
     public $components = array('Auth');
+
     public function dashboard()
     {
         $this->loadModel('Posts');
@@ -61,13 +63,14 @@ class UsersController extends AppController
     public function initialize()
     {
         parent::initialize();
-        
+
     }
     public function logout()
     {
         $this->Flash->success('You are now logged out.');
         return $this->redirect($this->Auth->logout());
     }
+    
     public function index()
     {
         $users = $this->paginate($this->Users);
@@ -101,6 +104,16 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            }
         if ($this->request->is('post')) 
         {
             $temp = $this->request->data;
@@ -128,6 +141,7 @@ class UsersController extends AppController
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
+}
     
 
     /**

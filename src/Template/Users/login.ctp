@@ -20,6 +20,7 @@
         <legend><?= _("Please enter email and password") ?></legend>
         <?= $this->Form->input('emailid'); ?>
         <?= $this->Form->input('password'); ?>
+
       </fieldset><br>
 
       <?= $this->Form->button(_('Login'), array('style' => "float: inherit;

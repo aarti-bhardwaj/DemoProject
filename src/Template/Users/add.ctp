@@ -16,6 +16,7 @@
         <?= $this->Form->create($user) ?>
         <fieldset>
             <?php
+                echo $this->Form->label('User.name', 'Your username');
                 echo $this->Form->label('User.name', 'Username');
                 echo $this->Form->input('uname', ['label' => false]);
                 echo $this->Form->label('Email Id', 'Email ID');
@@ -23,6 +24,7 @@
                 echo $this->Form->label('Password', 'Password');
                 echo $this->Form->input('password', ['label' => false]);
                 echo $this->Form->label('Confirm Password', 'Confirm Password');
+                echo $this->Form->input('confirm', ['label' => false, 'type' => 'password']);
                 echo $this->Form->input('confirm-password', ['label' => false, 'type' => 'password']);
 
             ?>
