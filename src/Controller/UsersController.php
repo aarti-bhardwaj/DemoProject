@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\I18n\Time;
 
 
 /**
@@ -24,7 +25,12 @@ class UsersController extends AppController
     // var $helpers = array('Form');
     public function profile() 
     {
+            $this->loadModel('Posts');
+            $posts = $this->Posts->find()
+                                // ->where(['user_id' => $this->Auth->user('id')])
+                                ->all();
 
+        $this->set('yourPosts', $posts);
     }
         
     public function dashboard()

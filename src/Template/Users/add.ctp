@@ -13,10 +13,9 @@
       <h4 class="title">Connect with friends and the world around you.</h4>
     </div>
     <div class="loginform">
-        <?= $this->Form->create($user) ?>
+        <?= $this->Form->create() ?>
         <fieldset>
             <?php
-                echo $this->Form->label('User.name', 'Your username');
                 echo $this->Form->label('User.name', 'Username');
                 echo $this->Form->input('uname', ['label' => false]);
                 echo $this->Form->label('Email Id', 'Email ID');
@@ -24,7 +23,6 @@
                 echo $this->Form->label('Password', 'Password');
                 echo $this->Form->input('password', ['label' => false]);
                 echo $this->Form->label('Confirm Password', 'Confirm Password');
-                echo $this->Form->input('confirm', ['label' => false, 'type' => 'password']);
                 echo $this->Form->input('confirm-password', ['label' => false, 'type' => 'password']);
 
             ?>
