@@ -21,6 +21,13 @@ class UsersController extends AppController
      */
 
     public $components = array('Auth');
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        // $this->Auth->allow('add' , 'edit');
+    }
+    
     public function profile() 
     {
         $user = $this->Auth->User();
@@ -34,7 +41,6 @@ class UsersController extends AppController
         
     public function dashboard()
     {
-        $this->loadModel('Posts');
         $posts = $this->Posts->find()->all();
         $this->set('userposts', $posts);
     }
@@ -114,6 +120,13 @@ class UsersController extends AppController
                     $this->Flash->error("The passwords are not same");
                     return $this->redirect(['action' => 'add']);
                 }
+        {       
+            $this->request->data['role'] = "user";
+            if($this->request->data['password']!=$this->request->data['confirm-password'])
+            {
+                $this->Flash->error('The passwords are not same');
+                return $this->redirect(['action' => 'add']);
+            }
                 unset($this->request->data['confirm-password']);
                     $user = $this->Users->patchEntity($user, $this->request->data);
                     // pr($user); die;
@@ -126,6 +139,7 @@ class UsersController extends AppController
                     {
                         $this->Flash->error(__('The user could not be saved. Please, try again.'));
                     }
+            }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
