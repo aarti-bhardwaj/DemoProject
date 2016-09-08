@@ -48,17 +48,16 @@
                                               <?= $this->Form->input('', ['type' => 'text','class' =>'form-control input-lg']); ?> <br>
                                                 <?= $this->Form->textarea('discription', ['class' =>'form-control input-lg', 'placeholder' =>'What do you want to share?',]); ?>  -->
 
-
-                                                <!-- <?= $this->Form->create($post) ?> -->
+                                <div class="posts form large-9 medium-8 columns content">
+                                    <?= $this->Form->create($post) ?>
                                     <fieldset>
                                         <legend><?= __('Add Post') ?></legend>
-                                        <?php
-                                            echo $this->Form->input('postname', ['type' => 'text','class' =>'form-control input-lg']);
-                                            // echo $this->Form->input('user_id', ['options' => $users]);
-                                            echo $this->Form->textarea('discription', ['class' =>'form-control input-lg', 'placeholder' =>'What do you want to share?',]);
-                                        ?> <br>
+                                        
+                                            <?= $this->Form->input('postname', ['type' => 'text','class' =>'form-control input-lg']); ?><br>
+                                            <?= $this->Form->textarea('description', ['class' =>'form-control input-lg', 'placeholder' =>'What do you want to share?']); ?> <br>
                                     </fieldset>
                                     <?= $this->Form->button(__('Submit')) ?>  
                                     <?= $this->Form->end() ?>
+                                </div>
 
                                         
