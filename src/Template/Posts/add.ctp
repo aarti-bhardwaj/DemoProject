@@ -14,15 +14,7 @@
                                 </div>
                             </form>
                             <ul class="nav navbar-nav">
-                              <li>
-                                <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
-                              </li>
-                              <li>
-                                <!-- <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a> -->
-                              </li>
-                              <li>
-                                <!-- <a href="#"><span class="badge">badge</span></a> -->
-                              </li>
+                             <li><?= $this->Html->link(__('<i class="glyphicon glyphicon-home">Home</i>'), ['controller' => 'Users', 'action' => 'dashboard'], ['escape' => false]) ?></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                               <li class="dropdown">
@@ -50,6 +42,7 @@
 
 
                                                 <!-- <?= $this->Form->create($post) ?> -->
+                                                <div class="well"> 
                                     <fieldset>
                                         <legend><?= __('Add Post') ?></legend>
                                         <?php
@@ -57,8 +50,11 @@
                                             // echo $this->Form->input('user_id', ['options' => $users]);
                                             echo $this->Form->textarea('discription', ['class' =>'form-control input-lg', 'placeholder' =>'What do you want to share?',]);
                                         ?> <br>
-                                    </fieldset>
-                                    <?= $this->Form->button(__('Submit')) ?>  
+                                      <?= $this->Form->button(__('Submit')) ?>  
                                     <?= $this->Form->end() ?>
+                                    </fieldset></div>
+
+                                    </div>
+                                    
 
                                         

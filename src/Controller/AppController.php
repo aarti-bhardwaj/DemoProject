@@ -44,12 +44,12 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        // $this->loadComponent('Auth', ['authenticate' => ['Form' => ['fields' => ['username' => 'emailid', 'password' => 'password']]],
-        //     'loginAction' => ['controller' => 'Users', 'action' => 'login'],
-        //     'authorize' => 'Controller',
-        //     'unauthorizedRedirect' => $this->referer()
-        //     ]);
-        // $this->Auth->allow(['display']);
+        $this->loadComponent('Auth', ['authenticate' => ['Form' => ['fields' => ['username' => 'emailid', 'password' => 'password']]],
+            'loginAction' => ['controller' => 'Users', 'action' => 'login'],
+            'authorize' => 'Controller',
+            'unauthorizedRedirect' => $this->referer()
+            ]);
+        $this->Auth->allow(['display']);
     }
 
     public function beforeFilter(Event $event) {
@@ -70,14 +70,14 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
-    // public function isAuthorized($user)
-    // {
-    //     $this->Auth->allow(['add']);
-    //     //admin can access every action
-    //     if(isset($user['role']) && $user['role'] === 'admin')
-    //     {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    public function isAuthorized($user)
+    {
+        $this->Auth->allow(['add']);
+        //admin can access every action
+        if(isset($user['role']) && $user['role'] === 'admin')
+        {
+            return true;
+        }
+        return false;
+    }
 }
