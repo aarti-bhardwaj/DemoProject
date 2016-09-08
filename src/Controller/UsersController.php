@@ -34,7 +34,9 @@ class UsersController extends AppController
         
     public function dashboard()
     {
-        
+        $this->loadModel('Posts');
+        $posts = $this->Posts->find()->all();
+        $this->set('userposts', $posts);
     }
 
     public function beforeFilter(Event $event)
@@ -106,7 +108,12 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) 
-        {
+        {       
+                if($this->request->data['password'] != $this->request->data['confirm-password'])
+                {
+                    $this->Flash->error("The passwords are not same");
+                    return $this->redirect(['action' => 'add']);
+                }
                 unset($this->request->data['confirm-password']);
                     $user = $this->Users->patchEntity($user, $this->request->data);
                     // pr($user); die;
