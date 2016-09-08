@@ -23,11 +23,12 @@ class UsersController extends AppController
     public $components = array('Auth');
     public function profile() 
     {
+        $user = $this->Auth->User();
             $this->loadModel('Posts');
             $posts = $this->Posts->find()
-                                // ->where(['user_id' => $this->Auth->user('id')])
+                                ->where(['user_id' => $this->Auth->user('id')])
                                 ->all();
-
+        $this->set('user', $user);
         $this->set('yourPosts', $posts);
     }
         
@@ -106,17 +107,6 @@ class UsersController extends AppController
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) 
         {
-                $user = $this->Users->patchEntity($user, $this->request->data);
-                if ($this->Users->save($user)) 
-                {
-                    $this->Flash->success(__('The user has been saved.'));
-                    return $this->redirect(['action' => 'index']);
-                } 
-                else 
-                {
-                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
-                }
-
                 unset($this->request->data['confirm-password']);
                     $user = $this->Users->patchEntity($user, $this->request->data);
                     // pr($user); die;
