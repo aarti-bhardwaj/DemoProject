@@ -22,10 +22,12 @@
             </div>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Home</a></li>
-            <li><a href="#" class="fa fa-user" alt="resquest"></a></li>
+            <!-- <li><a href="#">Home</a></li> -->
+            <li><?= $this->Html->link(__('Home'), ['controller' => 'Users', 'action' => 'dashboard']) ?> </li>
+            <li><?= $this->Html->link(__('Post'), ['controller' => 'Posts', 'action' => 'add']) ?> </li>
+            <!-- <li><a href="#" class="fa fa-user" alt="resquest"></a></li>
             <li><a href="#" class="fa fa-comments" alt="inbox"></a></li>
-            <li><a href="#" class="fa fa-bell" alt="notifications"></a></li>
+            <li><a href="#" class="fa fa-bell" alt="notifications"></a></li> -->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -51,7 +53,7 @@
                <input type ="button" value= "Add Cover Page" style ="width:145px; float:right; margin:-54px 34px 0px 0px"/>
               
               <div class="caption caption-grand-profile">
-                <h3 class="title-grand-profile">Facebook</h3>
+                <h3 class="title-grand-profile"><?= ($user['uname']) ?></h3>
               </div>
               <ul class="nav nav-pills nav-grand-profile">
                   <li role="presentation" class="active"><a href="#">About</a></li>
