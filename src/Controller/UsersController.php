@@ -41,12 +41,9 @@ class UsersController extends AppController
         
     public function dashboard()
     {
-        $this->loadModel('Posts');
-            $posts = $this->Posts->find()
-                                ->all();
+        $posts = $this->Posts->find()->all();
         $this->set('userposts', $posts);
     }
-
     public function login()
     {
         if ($this->request->is('post'))
