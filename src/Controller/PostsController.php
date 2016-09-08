@@ -54,13 +54,14 @@ class PostsController extends AppController
 
         $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
-            pr($this->request->data);die;
-            $post = $this->Posts->patchEntity($post, $this->request->data);
             $post->user_id = $this->Auth->user(['id']);
+            $post = $this->Posts->patchEntity($post, $this->request->data);
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
+            } 
+            else 
+            {
                 $this->Flash->error(__('The post could not be saved. Please, try again.'));
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
             }

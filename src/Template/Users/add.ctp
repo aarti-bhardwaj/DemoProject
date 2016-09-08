@@ -14,7 +14,7 @@
     </div>
     <div class="loginform">
 
-        <?= $this->Form->create(); ?>
+        <?= $this->Form->create($user); ?>
         <fieldset>
             <?php
                 echo $this->Form->label('User.name', 'Username');
