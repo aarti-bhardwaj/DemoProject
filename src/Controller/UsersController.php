@@ -42,7 +42,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        // $this->Auth->allow('add' , 'edit');
+        $this->Auth->allow('add');
     }
 
     public function login()
@@ -54,7 +54,7 @@ class UsersController extends AppController
                 {
                     $this->Auth->setUser($user);
                     $this->Flash->success(_("Login Successfully"));
-                    // return $this->redirect($this->Auth->redirectUrl());
+                    return $this->redirect(['action' => 'dashboard']);
                 }
                 else
                 {
@@ -108,7 +108,7 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) 
-        {       
+        {       $this->request->data['role'] = 'user';
                 if($this->request->data['password'] != $this->request->data['confirm-password'])
                 {
                     $this->Flash->error("The passwords are not same");
@@ -120,8 +120,7 @@ class UsersController extends AppController
                     if ($this->Users->save($user)) 
                     {
                         $this->Flash->success(__('The user has been saved.'));
-                        // return $this->redirect(['action' => 'index']);
-                        return $this->redirect(['action' => 'dashboard']);
+                        return $this->redirect(['action' => 'login']);
                     } 
                     else 
                     {
