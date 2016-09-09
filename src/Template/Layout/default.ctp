@@ -30,9 +30,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
      <!-- <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?> --> 
 
-    <?= $this->Html->css('facebook.css') ?>
-    <?= $this->Html->css('bootstrapDB.css') ?>
-
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?> 
@@ -40,7 +37,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('custom.css') ?>
     <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('bootstrap.css') ?>
 
     
     <title>Facebook</title>

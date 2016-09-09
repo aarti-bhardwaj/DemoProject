@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style = "background:#3b5998 ">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -15,16 +15,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <div class="search">
+              <!-- <div class="search">
                 <input type="text" class="form-control" placeholder="Search peoples, places and more">
                 <span class="fa fa-search"></span>
-              </div>
+              </div> -->
             </div>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <!-- <li><a href="#">Home</a></li> -->
+          <!--   <li><a href="#">Home</a></li> -->
             <li><?= $this->Html->link(__('Home'), ['controller' => 'Users', 'action' => 'dashboard']) ?> </li>
-            <li><?= $this->Html->link(__('Post'), ['controller' => 'Posts', 'action' => 'add']) ?> </li>
+            <li><?= $this->Html->link(__('Post'), ['controller' => 'Post', 'action' => 'dashboard']) ?> </li>
             <!-- <li><a href="#" class="fa fa-user" alt="resquest"></a></li>
             <li><a href="#" class="fa fa-comments" alt="inbox"></a></li>
             <li><a href="#" class="fa fa-bell" alt="notifications"></a></li> -->
@@ -115,7 +115,7 @@
                   </div>
                   <div class="media-body">
                     <a class="media-heading title-post" href="#">Your Comment Title</a>
-                    <h5 class="time-post"><?= h($post->created)?></h5>
+                  <!--   <h5 class="time-post"><?= h($post->created)?></h5> -->
                   </div>
                 </div>
                 <a href="#" tyle="width: 100%;height: 200px;display: block;">

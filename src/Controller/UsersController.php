@@ -41,14 +41,10 @@ class UsersController extends AppController
         
     public function dashboard()
     {
-        $posts = $this->Posts->find()->all();
+        $this->loadModel('Posts');
+        $posts = $this->Posts->find()
+                             ->all();
         $this->set('userposts', $posts);
-    }
-
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        $this->Auth->allow('add');
     }
 
     public function login()
