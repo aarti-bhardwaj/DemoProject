@@ -134,3 +134,6 @@ h2 { font-size: 30px; line-height:38px; font-weight:normal; }
 	width: 163px;
 	float: inherit;
 }
+.button {
+    border: 1px solid !important;
+}

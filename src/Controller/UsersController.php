@@ -25,7 +25,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        // $this->Auth->allow('add' , 'edit');
+        $this->Auth->allow('add','friendRequest');
     }
     
     public function profile() 
@@ -41,6 +41,7 @@ class UsersController extends AppController
         
     public function dashboard()
     {
+        $this->loadModel('Posts');
         $posts = $this->Posts->find()->all();
         $this->set('userposts', $posts);
     }
@@ -53,11 +54,12 @@ class UsersController extends AppController
                 {
                     $this->Auth->setUser($user);
                     $this->Flash->success(_("Login Successfully"));
-                    // return $this->redirect($this->Auth->redirectUrl());
+                    return $this->redirect(['action' => 'dashboard']);
                 }
                 else
                 {
                     $this->Flash->error(_("Invalid email or password, try again"));
+                    return $this->redirect(['action' => 'login']);
                 }
         }
     }
@@ -81,6 +83,15 @@ class UsersController extends AppController
         $this->set('_serialize', ['users']);
     }
 
+    public function friendRequest(){
+        $this->loadModel('UserFriends');
+        $friend1 = $this->Auth->user('id');
+        $friend2 = '8';
+        $data = ['friend1' => $friend1, 'friend2' => $friend2, 'status' => 1];
+        $temp = $this->UserFriends->newEntity($data);
+        $this->UserFriends->save($temp);
+        pr($temp);
+    }
     /**
      * View method
      *
@@ -106,29 +117,34 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
-        if ($this->request->is('post')) 
-        {       
-            $this->request->data['role'] = "user";
-            if($this->request->data['password']!=$this->request->data['confirm-password'])
-            {
-                $this->Flash->error('The passwords are not same');
-                return $this->redirect(['action' => 'add']);
-            }
+            if ($this->request->is('post')) 
+            {       
+                $this->request->data['role'] = "user";
+                //check format of emailid
+                // if($this->request->data['emailid']!= $this->request->data['pattern' => '@'])
+                // {
+
+
+                // }
+                if($this->request->data['password']!=$this->request->data['confirm-password'])
+                {
+                    $this->Flash->error('The passwords are not same');
+                    return $this->redirect(['action' => 'add']);
+                }
                 unset($this->request->data['confirm-password']);
                     $user = $this->Users->patchEntity($user, $this->request->data);
-                    // pr($user); die;
+                    pr($user); die;
                     if ($this->Users->save($user)) 
                     {
                         $this->Flash->success(__('The user has been saved.'));
-                        // return $this->redirect(['action' => 'index']);
-                        return $this->redirect(['action' => 'dashboard']);
+                        
+                        return $this->redirect(['action' => 'login']);
                     } 
                     else 
                     {
                         $this->Flash->error(__('The user could not be saved. Please, try again.'));
                     }
             }
-        }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
