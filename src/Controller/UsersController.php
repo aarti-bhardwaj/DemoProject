@@ -110,13 +110,7 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) 
-        {       $this->request->data['role'] = 'user';
-                if($this->request->data['password'] != $this->request->data['confirm-password'])
-                {
-                    $this->Flash->error("The passwords are not same");
-                    return $this->redirect(['action' => 'add']);
-                }
-        {       
+        
             $this->request->data['role'] = "user";
             if($this->request->data['password']!=$this->request->data['confirm-password'])
             {
@@ -166,6 +160,7 @@ class UsersController extends AppController
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
+
     }
 
     /**
