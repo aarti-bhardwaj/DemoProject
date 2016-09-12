@@ -45,6 +45,13 @@ class UsersController extends AppController
         $posts = $this->Posts->find()->all();
         $this->set('userposts', $posts);
     }
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('add');
+    }
+
     public function login()
     {
         if ($this->request->is('post'))
@@ -117,6 +124,7 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
+<<<<<<< HEAD
             if ($this->request->is('post')) 
             {       
                 $this->request->data['role'] = "user";
@@ -131,13 +139,32 @@ class UsersController extends AppController
                     $this->Flash->error('The passwords are not same');
                     return $this->redirect(['action' => 'add']);
                 }
+=======
+        if ($this->request->is('post')) 
+        {       $this->request->data['role'] = 'user';
+                if($this->request->data['password'] != $this->request->data['confirm-password'])
+                {
+                    $this->Flash->error("The passwords are not same");
+                    return $this->redirect(['action' => 'add']);
+                }
+        {       
+            $this->request->data['role'] = "user";
+            if($this->request->data['password']!=$this->request->data['confirm-password'])
+            {
+                $this->Flash->error('The passwords are not same');
+                return $this->redirect(['action' => 'add']);
+            }
+>>>>>>> 099d374a8ad5133986483365470fa4af5eae7ce8
                 unset($this->request->data['confirm-password']);
                     $user = $this->Users->patchEntity($user, $this->request->data);
                     pr($user); die;
                     if ($this->Users->save($user)) 
                     {
                         $this->Flash->success(__('The user has been saved.'));
+<<<<<<< HEAD
                         
+=======
+>>>>>>> 099d374a8ad5133986483365470fa4af5eae7ce8
                         return $this->redirect(['action' => 'login']);
                     } 
                     else 
