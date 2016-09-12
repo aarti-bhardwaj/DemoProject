@@ -1,3 +1,4 @@
+<?= $this->Html->css('custom.css') ?>
 <div class="login">
 <!-- header starts here -->
 <div id="facebook-Bar">
@@ -11,7 +12,8 @@
   <div class="loginboxinner radius">
     <div class="loginheader">
       <h4 class="title">Connect with friends and the world around you.</h4>
-    </div>
+    </div><br>
+    <?= $this->Flash->render() ?>
     <div class="loginform">
 
         <?= $this->Form->create($user); ?>
