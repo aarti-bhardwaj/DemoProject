@@ -40,9 +40,11 @@ class UsersController extends AppController
         
     public function dashboard()
     {
+        $user = $this->Auth->User();
         $this->loadModel('Posts');
         $posts = $this->Posts->find()
                              ->all();
+        $this->set('user', $user);
         $this->set('userposts' , $posts);
 
         
@@ -56,7 +58,7 @@ class UsersController extends AppController
                 {
                     $this->Auth->setUser($user);
                     $this->Flash->success(_("Login Successfully"));
-                    // return $this->redirect($this->Auth->redirectUrl());
+                    return $this->redirect(['action' => 'dashboard']);
                 }
                 else
                 {
@@ -131,7 +133,6 @@ class UsersController extends AppController
                         $this->Flash->error(__('The user could not be saved. Please, try again.'));
                     }
             }
-        }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }

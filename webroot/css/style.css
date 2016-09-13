@@ -158,8 +158,8 @@ body{
 	top: 0;
 }
 .title-grand-profile{
-	color: #fff;
-    text-rendering: optimizelegibility;
-    text-shadow: 0 0 3px rgba(0,0,0,.8);
+	color: #1d18ec;
+    /*text-rendering: optimizelegibility;*/
+    /*text-shadow: 0 0 3px rgba(0,0,0,.8);*/
 }
 /*#Comments*/
