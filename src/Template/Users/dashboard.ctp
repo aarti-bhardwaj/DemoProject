@@ -1,5 +1,7 @@
+
   <?= $this->Html->css('facebook.css') ?>
 					<div class="column" id="main">
+
 					
 						<!-- top nav -->
 						<div class="navbar navbar-blue " style="width:100% ">  

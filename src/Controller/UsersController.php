@@ -25,7 +25,9 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('add' , 'edit');
+
+        $this->Auth->allow('add','friendRequest');
+
     }
     public function profile() 
     {
@@ -47,8 +49,8 @@ class UsersController extends AppController
         $this->set('user', $user);
         $this->set('userposts' , $posts);
 
-        
     }
+
     public function login()
     {
         if ($this->request->is('post'))
@@ -63,6 +65,7 @@ class UsersController extends AppController
                 else
                 {
                     $this->Flash->error(_("Invalid email or password, try again"));
+                    return $this->redirect(['action' => 'login']);
                 }
         }
     }
@@ -86,6 +89,15 @@ class UsersController extends AppController
         $this->set('_serialize', ['users']);
     }
 
+    public function friendRequest(){
+        $this->loadModel('UserFriends');
+        $friend1 = $this->Auth->user('id');
+        $friend2 = '8';
+        $data = ['friend1' => $friend1, 'friend2' => $friend2, 'status' => 1];
+        $temp = $this->UserFriends->newEntity($data);
+        $this->UserFriends->save($temp);
+        pr($temp);
+    }
     /**
      * View method
      *
@@ -112,7 +124,7 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) 
-        {       
+        
             $this->request->data['role'] = "user";
             if($this->request->data['password']!=$this->request->data['confirm-password'])
             {
@@ -121,18 +133,18 @@ class UsersController extends AppController
             }
                 unset($this->request->data['confirm-password']);
                     $user = $this->Users->patchEntity($user, $this->request->data);
-                    // pr($user); die;
+                    pr($user); die;
                     if ($this->Users->save($user)) 
                     {
                         $this->Flash->success(__('The user has been saved.'));
-                        // return $this->redirect(['action' => 'index']);
-                        return $this->redirect(['action' => 'dashboard']);
+
+                        return $this->redirect(['action' => 'login']);
                     } 
                     else 
                     {
                         $this->Flash->error(__('The user could not be saved. Please, try again.'));
                     }
-            }
+
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
@@ -162,6 +174,7 @@ class UsersController extends AppController
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
+
     }
 
     /**

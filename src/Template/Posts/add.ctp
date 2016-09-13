@@ -1,6 +1,5 @@
 
-                        
-                        <!-- top nav -->
+                                                <!-- top nav -->
                         <div class="navbar navbar-blue navbar-static" style="width:100% !important">  
                             <div class="navbar-header">
                             </div>
@@ -53,6 +52,7 @@
                                     <?= $this->Form->end() ?>
                                     </fieldset>
                                 </div>
+
 
 
                                         
